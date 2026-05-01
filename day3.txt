@@ -1,0 +1,112 @@
+Recap
+-----------
+created keys
+imported public key into AWS
+created SG
+Created EC2
+Connected to EC2
+practiced few commands
+absoulte path and relative path
+ports
+protocols, SSH 22
+
+<command-name> <options> <inputs>
+-<single-char>
+--<word>
+
+ssh -i <private-key-path> ec2-user@IP
+
+clear
+pwd
+cd
+ls -l
+ls -ltr
+ls -la
+cat
+touch
+mkdir
+rmdir
+rm
+mv
+uname
+
+how to copy files
+
+which file to copy, where to copy
+ctrl c and ctrl v
+
+cp <source-file> <destination-file>
+
+/etc/passwd
+
+how to cut the file
+
+grep <word-to-find> <file>
+DevOps devops both are different
+
+How to download the files?
+
+curl and wget
+
+wget <URL>
+
+curl <URL>
+
+wget is used to download the files, curl is used to show the text directly on the terminal. curl is used to run the scripts
+
+
+cut command, delimiter
+
+cut -d "/" -f1
+
+https:
+
+raw.githubusercontent.com
+devopsprameela
+notes
+main
+session-02.txt
+
+awk command
+
+awk -F "/" '{print $1F}'
+
+awk -F "/" '{print $NF}'
+
+/etc/passwd
+
+ec2-user:x:1000:1000:EC2 Default User:/home/ec2-user:/bin/bash
+
+How to get list of users in linux server?
+
+head and tail
+
+head <file-name> --> first 10lines
+tail <file-name> --> last 10 lines
+
+
+
+How to get lines in between the 5-10
+
+cat file name | head -n 10 | tail -n 5
+
+tail -f <log-file> --> How to see running log
+
+/var/log/messages
+
+
+Editor
+-----------
+vim --> visually improved
+
+vim <file-name>
+
+Colon/Command Mode
+---------------
+:q --> Quit
+:wq --> write and quit
+:q! --> dont save the changes and exit
+:set nu
+:set nonu
+:/<word-to-find> --> search from top
+:?<word-to-find> --> search from bottom
