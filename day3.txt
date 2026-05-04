@@ -204,8 +204,7 @@ groupdel
 suresh, suresh123
 
 inform suresh, that his user is creatd
-
-18.212.106.66 --> he should login with username and password
+ he should login with username and password
 
 by default, linux OS will not allow password authentication, it will only allow key based authentication
 
