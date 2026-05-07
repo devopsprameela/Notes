@@ -1,0 +1,330 @@
+Packagemenagement
+-------------------
+Package management is the process of installing, updating, removing, 
+and managing software on a computer using a package manager tool.
+
+
+A package manager helps you:
+
+📥 Install software
+🔄 Update software
+❌ Remove software
+🔗 Automatically install dependencies
+
+
+Debian/Ubuntu
+-------------
+APT (Advanced Package Tool)
+sudo apt update
+sudo apt install nginx
+
+RedHat / Amazon Linux / CentOS
+-------------------------------
+YUM (Yellowdog Updater Modified)
+DNF (Dandified YUM)
+sudo yum install nginx
+
+Service Management
+---------------------
+
+Service management is the process of controlling background programs (services) on a system — like starting, 
+stopping, restarting, and checking them.
+
+Using service management, you can:
+
+▶️ Start a service
+⏹️ Stop a service
+🔄 Restart a service
+📊 Check status
+🔁 Enable service at boot
+🚫 Disable service
+
+Most modern Linux systems use:
+
+👉 systemd
+
+Command:
+
+systemctl
+
+Start service
+sudo systemctl start nginx
+⏹️ Stop service
+sudo systemctl stop nginx
+🔄 Restart service
+sudo systemctl restart nginx
+📊 Check status
+sudo systemctl status nginx
+🔁 Enable at boot
+sudo systemctl enable nginx
+🚫 Disable at boot
+sudo systemctl disable nginx
+
+Network Management
+--------------------
+Network management is the process of configuring, monitoring, and maintaining a computer network so
+ systems can communicate properly and securely.
+
+A network includes:
+
+Computers 💻
+Servers ☁️
+Routers 📶
+IP addresses
+Communication protocols
+
+Check IP address
+ip addr
+
+Check connectivity (ping)
+ping google.com
+DNS lookup
+nslookup google.com
+Check open ports / connections
+ss -tuln
+
+Test HTTP connection
+curl http://example.com
+
+Check port connectivity
+telnet google.com 80
+
+Process Management
+-----------------------
+Process management is the process of handling running programs (processes) in an operating system — like 
+starting, stopping, monitoring, and controlling them.
+
+What you do in process management
+▶️ Start a process
+⏹️ Stop a process
+🔍 View running processes
+⚡ Kill a process
+📊 Monitor CPU/memory usage
+
+View running processes
+ps -ef
+. Real-time process monitoring
+top
+
+👉 Shows CPU, memory usage live
+
+🔍 3. Find a specific process
+ps -ef | grep nginx
+❌ 4. Kill a process
+kill <PID>
+
+Force kill:
+
+kill -9 <PID>
+🔎 5. Get process ID (PID)
+pgrep nginx
+🧠 Example
+
+If Nginx is running:
+
+ps -ef | grep nginx
+
+👉 You’ll see its process ID (PID)
+
+What is PID?
+
+👉 PID (Process ID) = unique number given to each running process
+
+Every process has its own PID
+Used to identify and control the process
+
+PPID (Parent Process ID) = PID of the process that started this process
+
+👉 Every process is created by another process
+
+Linux Directory Structure (simple explanation)
+
+Linux follows a standard directory layout starting from a single root:
+
+/
+
+👉 This / is called the root directory — everything starts from here.
+
+🌳 Basic structure
+/ 
+├── /bin
+├── /etc
+├── /home
+├── /var
+├── /usr
+├── /tmp
+├── /root
+├── /dev
+├── /proc
+📂 Important directories (must know)
+📦 /bin
+
+👉 Essential commands (for all users)
+
+Examples:
+
+ls, cp, mv, cat
+⚙️ /etc
+
+👉 Configuration files
+
+Examples:
+
+system configs
+service configs (like Nginx)
+🏠 /home
+
+👉 User directories
+
+Example:
+
+/home/ec2-user
+👑 /root
+
+👉 Home directory of root (admin user)
+
+📊 /var
+
+👉 Variable data (changes frequently)
+
+Examples:
+
+logs → /var/log
+web files → /var/www
+📁 /usr
+
+👉 User-installed software and libraries
+
+programs
+binaries
+documentation
+🗑️ /tmp
+
+👉 Temporary files
+
+auto-deleted later
+🔌 /dev
+
+👉 Device files
+
+Examples:
+
+disks
+USB devices
+⚙️ /proc
+
+👉 Process and system info (virtual files)
+
+
+SFTP
+-----
+SFTP (SSH File Transfer Protocol) is a secure method to transfer files between your laptop and a remote server.
+
+👉 It works over
+SSH (Secure Shell)
+so everything is encrypted and safe
+
+🧠 Simple idea
+
+👉 SFTP = secure file transfer + file management
+
+Upload files 📤
+Download files 📥
+Manage files 📁
+🔁 How SFTP works
+Laptop
+   ↓ (SFTP over SSH)
+Secure connection
+   ↓
+Server (EC2)
+   ↓
+File transfer
+🔐 Step 1: Connect to server
+
+Run on your laptop:
+
+sftp -i devops.pem ec2-user@52.90.47.32
+
+👉 Connects to Amazon EC2
+
+🎯 After connection
+
+You will see:
+
+sftp>
+
+👉 Now you are inside SFTP mode
+
+📂 Step 2: Basic commands with explanation
+📁 ls → list files (remote server)
+ls
+
+👉 Shows files in EC2
+
+💻 lls → list files (local laptop)
+lls
+
+👉 Shows files on your system
+
+📤 put → upload file
+put Resume.docx
+
+Upload folder (IMPORTANT STEP)
+put -r myfolder
+
+👉 Sends file from laptop → EC2
+
+📥 get → download file
+get test.txt
+
+👉 EC2 → laptop
+
+
+
+SCP Command (clear explanation)
+
+SCP (Secure Copy Protocol) is a command used to securely copy files between 
+your local machine and a remote server over SSH.
+
+👉 It is like a “quick file transfer tool”.
+
+It uses:
+SSH (Secure Shell) for encryption.
+
+🧠 Simple idea
+
+👉 SCP = secure copy files from laptop ↔ server
+
+Laptop → EC2 📤
+EC2 → Laptop 📥
+🚀 Basic SCP syntax
+scp -i key.pem source destination
+📤 1. Copy file (Laptop → EC2)
+scp -i devops.pem Resume.docx ec2-user@52.90.47.32:/home/ec2-user/
+
+👉 Sends file to Amazon EC2
+
+📥 2. Copy file (EC2 → Laptop)
+scp -i devops.pem ec2-user@52.90.47.32:/home/ec2-user/file.txt .
+
+👉 Downloads file to current folder
+
+📁 3. Copy folder (important)
+scp -r -i devops.pem myfolder ec2-user@52.90.47.32:/home/ec2-user/
+
+👉 -r = recursive (copy entire folder)
+
+| Feature         | SCP            | SFTP                      |
+| --------------- | -------------- | ------------------------- |
+| Type            | One-time copy  | Interactive session       |
+| Speed           | ⚡ Faster       | Slightly slower           |
+| File management | ❌ Not possible | ✅ Yes (ls, cd, rm, mkdir) |
+| Resume transfer | ❌ No           | ✅ Yes                     |
+| Usage style     | Single command | Session-based             |
+
+
+
+
+
+
+
