@@ -1,0 +1,56 @@
+Git is decentralised source code management...
+
+GitOps --> git is the single source of truth...
+
+centralised vs decentralised/distributed
+
+centralised  vs decentralised 
+----------------------------------------------
+1. single point of failure 
+2. single point of development
+3. accessbility
+distributed
+----------------------------------------------
+1. no single point of failure
+2. development is distributed
+3. easy accessbility
+
+Git follows distributed/decentralised architecture. Same kind of setup exists in remote server is available in all the computers connected to that repo. So at any point of single computer is enough to restore everything. This is called distributed/decentralised. This is acheived loaclrepo setup.
+
+repository == which stores something and the place where we can store our source code
+Git --> concept invented Linus Torvalds, inventor of Linux
+GitHub, BitBucket, GitLab, Codecommit,Azure repos, etc.
+
+clone --> download the repo
+
+git clone <URL>
+
+normal folder vs git repo --> .git(hidden)
+git init- creates git local repo
+
+for the first time to set up git in your local repo you can do execute these commands
+git config --global user.name "your github username"
+git config --global user.email "your email address which is configure to your github"
+and
+create one pesrsonal access token
+configure it in your credential manager
+
+
+workspace --> where you develop scripts
+
+1. staging/index area
+
+task1, task2 are in development
+
+task1 should be released/pushed to git. whatever the changes completed push them to staging area...
+
+git add <file-name>
+
+git commit -m "I created a new Hello World"
+
+git push origin main
+
+main is our default branch
+
+git clone-downloading files from remote to local for the first time we use
+git pull -downloads the files changed
