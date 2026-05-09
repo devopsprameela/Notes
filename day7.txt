@@ -1,0 +1,97 @@
+
+
+git reset — definition
+
+git reset is a Git command used to move the current branch pointer to a different commit,
+ and optionally update your staging area and working directory to match that commit.
+
+git reset .
+
+git revert — definition
+---------------------------
+
+git revert is a Git command used to undo the changes of a specific commit by creating a new commit that reverses it.
+
+git revert commitid
+
+git cherry-pick — definition
+------------------------------
+
+git cherry-pick is a Git command used to apply a specific commit from one branch onto another branch.
+
+git stash
+---------
+git stash is a Git command used to temporarily save your uncommitted changes without making a commit, 
+and restore a clean working directory.
+
+git stash
+
+
+git merge — definition
+
+git merge is a Git command used to combine the changes from one branch into another branch.
+
+In simple words:
+
+It brings two branches together into one unified history.
+
+How it works
+
+Suppose you have:
+
+main:     A — B — C
+feature:          D — E
+
+Now you switch to main and run:
+
+git merge feature
+
+Result:
+
+main: A — B — C — M
+               \     
+                D — E
+M = merge commit (created if needed)
+Git combines both branch histories
+
+
+git rebase
+----------
+
+git rebase — definition
+
+git rebase is a Git command used to move or replay commits from one branch onto another branch, creating a clean, linear history.
+
+In simple words:
+
+It takes your branch’s commits and “replays” them on top of another branch.
+
+How it works
+
+Suppose you have:
+
+main:     A — B — C
+feature:          D — E
+
+Now you run:
+
+git checkout feature
+git rebase main
+
+Git will:
+
+Take commits D and E
+Temporarily remove them
+Move feature to latest main
+Replay D and E on top
+
+Result:
+
+main:     A — B — C
+feature:              D' — E'
+D' and E' are new commits (new hashes)
+Key idea
+✔ Rewrites commit history
+✔ Creates a linear (clean) history
+❌ Does NOT create merge commits
+⚠ Changes commit IDs
