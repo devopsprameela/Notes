@@ -1,0 +1,200 @@
+
+
+Skip to content
+Using Gmail with screen readers
+2 of 21,480
+day10.txt
+Inbox
+
+Prameela G <prameelanamala@gmail.com>
+Attachments
+4:48 PM (2 hours ago)
+to me
+
+
+ One attachment
+  •  Scanned by Gmail
+What is EC2?
+
+Amazon Web Services Amazon EC2 (Elastic Compute Cloud) is a web service that provides resizable virtual servers in the cloud.
+It allows users to launch, configure, and manage virtual machines called instances.
+
+EC2 is part of Amazon Web Services and is widely used for:
+
+Hosting websites
+Running applications
+Big data processing
+Machine learning workloads
+Game servers
+Development/testing environments
+
+Official documentation:
+Amazon EC2 Documentation
+
+1. Key Features of EC2
+a) Scalability
+Increase or decrease server capacity easily
+Auto Scaling automatically adjusts instances
+b) Elasticity
+Resources can be provisioned whenever needed
+Pay only for usage
+c) Virtual Machines
+Provides cloud-based virtual servers
+Supports Linux, Windows, Ubuntu, Red Hat, etc.
+d) Secure
+Uses Security Groups and Key Pairs
+Integrated with IAM (Identity and Access Management)
+e) Flexible Pricing
+Multiple pricing models available
+2. EC2 Terminology
+Term	Meaning
+Instance	Virtual server
+AMI	Amazon Machine Image
+EBS	Elastic Block Store
+Security Group	Virtual firewall
+Key Pair	Authentication keys
+Region	Geographical AWS location
+Availability Zone	Isolated data center within a region
+Elastic IP	Static public IP address
+Snapshot	Backup of EBS volume
+3. EC2 Architecture
+
+Basic EC2 architecture:
+
+User → Internet → Security Group → EC2 Instance → EBS Storage
+
+Components:
+
+User request
+Security filtering
+EC2 compute processing
+Data storage in EBS/S3
+4. Amazon Machine Image (AMI)
+
+An AMI is a preconfigured template used to launch instances.
+
+It contains:
+
+Operating System
+Application server
+Applications
+Configurations
+Types of AMIs
+Public AMI
+Private AMI
+Marketplace AMI
+
+Examples:
+
+Ubuntu AMI
+Amazon Linux AMI
+Windows Server AMI
+5. EC2 Instance Types
+
+EC2 instances are categorized based on workload.
+
+a) General Purpose
+
+Balanced CPU, memory
+
+Examples:
+
+t2.micro
+t3.small
+m5.large
+
+Use Cases:
+
+Web servers
+Small databases
+b) Compute Optimized
+
+High CPU performance
+
+Examples:
+
+c5.large
+c6g.large
+
+Use Cases:
+
+Gaming servers
+Scientific computing
+c) Memory Optimized
+
+Large RAM capacity
+
+Examples:
+
+r5.large
+x1e.xlarge
+
+Use Cases:
+
+Big data analytics
+In-memory databases
+d) Storage Optimized
+
+High disk throughput
+
+Examples:
+
+i3.large
+d2.xlarge
+
+Use Cases:
+
+Data warehousing
+NoSQL databases
+e) Accelerated Computing
+
+GPU based
+
+Examples:
+
+p3
+g4dn
+
+Use Cases:
+
+AI/ML
+Video rendering
+6. EC2 Pricing Models
+a) On-Demand
+Pay per hour/second
+No commitment
+
+Best for:
+
+Short-term workloads
+b) Reserved Instances
+Reserve for 1 or 3 years
+Lower cost
+
+Best for:
+
+Predictable workloads
+c) Spot Instances
+Unused AWS capacity
+Very cheap
+Can be interrupted
+
+Best for:
+
+
+ EC2 Storage Options
+a) EBS (Elastic Block Store)
+
+Persistent storage attached to EC2.
+
+Features:
+
+Data persists after reboot
+Snapshot support
+
+Types:
+
+gp3
+io1
+st1
+sc1
