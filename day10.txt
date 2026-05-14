@@ -1,19 +1,7 @@
 
 
-Skip to content
-Using Gmail with screen readers
-2 of 21,480
-day10.txt
-Inbox
-
-Prameela G <prameelanamala@gmail.com>
-Attachments
-4:48 PM (2 hours ago)
-to me
 
 
- One attachment
-  •  Scanned by Gmail
 What is EC2?
 
 Amazon Web Services Amazon EC2 (Elastic Compute Cloud) is a web service that provides resizable virtual servers in the cloud.
