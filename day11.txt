@@ -1,0 +1,281 @@
+Elastic B lock  storage
+-------------------------
+It is a block-level storage service used with Amazon EC2 virtual servers. EBS provides persistent storage volumes that you can attach to EC2 instances, similar to how a hard drive works for a physical computer.
+
+Key Features of AWS EBS
+Persistent storage — data remains even after the EC2 instance stops.
+High availability — data is replicated within an Availability Zone.
+Scalable — increase storage size when needed.
+Snapshot support — create backups using snapshots stored in Amazon S3.
+Performance options — SSD and HDD volume types for different workloads.
+Encryption support — secure data at rest and in transit.
+Common Use Cases
+Hosting databases
+Boot volumes for EC2 instances
+File systems for applications
+Backup and disaster recovery
+High-performance enterprise applications
+Simple Example
+
+If an EC2 instance is like a computer, then:
+
+EC2 = the computer/server
+EBS = the hard disk attached to it
+
+
+how to  attach volume  to existing ebs volume
+-----------------------------------------------
+Step 1: Create an EBS Volume
+
+Open the AWS Console
+Go to EC2 Dashboard
+Select Volumes
+Click Create Volume
+Choose:
+Volume type (gp3 recommended)
+Size
+Availability Zone
+(must match the EC2 instance AZ)
+Click Create Volume
+
+Step 2: Attach the EBS Volume to EC2
+
+In Volumes
+Select the new volume
+Click Actions → Attach Volume
+Choose the EC2 instance
+
+Device name example:
+
+/dev/xsdf
+Click Attach
+
+Step 3: Connect to the EC2 Instance
+
+Use SSH:
+
+ssh -i mykey.pem ec2-user@<public-ip>
+
+
+volume is attached or not
+---------------------------
+lsblk
+used for file file system or not
+--------------------------------
+df -hT
+
+sudo mkfs -t xfs /dev/nvme1n1
+sudo mkdir /data
+sudo mount /dev/nvme1n1 /data
+
+df -hT
+
+lsblk
+
+add permanently to file system
+---------------------------------
+
+sudo blkid /dev/nvme1n1
+
+sudo vi /etc/fstab
+
+add uuid of volume attached and save and exit
+
+sudo mount -add
+
+To increase volumesize
+-----------------------
+lsblk
+df -hT 
+sudo xfs_growfs /data
+df -hT
+
+
+S3(simple storage service)
+-------------------------
+Amazon S3 (Simple Storage Service) is an object storage service used to store and retrieve any amount of data from anywhere on the internet.
+
+It is designed for:
+
+Scalability
+Durability
+High availability
+Low cost storage
+
+1. Buckets
+A bucket is a container for storing data
+Every object is stored inside a bucket
+Bucket names must be globally unique
+
+2. Objects
+Actual data stored in S3
+Can be files like:
+Images
+Videos
+Backups
+Logs
+Documents
+
+Each object contains:
+
+Data
+Metadata
+Unique key (file name)
+
+STORAGE CLASSES
+-------------
+| Storage Class        | Use Case                     |
+| -------------------- | ---------------------------- |
+| Standard             | Frequently accessed data     |
+| Intelligent-Tiering  | Automatically optimizes cost |
+| Standard-IA          | Infrequent access            |
+| One Zone-IA          | Lower-cost infrequent data   |
+| Glacier              | Archival storage             |
+| Glacier Deep Archive | Long-term backup             |
+
+
+use of lifecycle policy
+--------------------------
+Lifecycle Policy in Amazon S3 (in Amazon Web Services)
+
+A Lifecycle policy in Amazon S3 is a rule set that automatically manages objects over time, such as moving them to cheaper storage or deleting them when they are no longer needed.
+
+Main Uses of S3 Lifecycle Policy
+1. Cost Optimization 💰
+
+Automatically move data to cheaper storage classes:
+
+Standard → Standard-IA
+Standard-IA → Glacier
+Glacier → Deep Archive
+
+👉 Helps reduce storage cost significantly.
+
+2. Automatic Data Deletion 🗑️
+
+You can delete objects after a defined time:
+
+Delete logs after 30 days
+Remove temporary files after 7 days
+Clean up old backups
+3. Manage Object Versions (with Versioning) 🔄
+
+If versioning is enabled:
+
+Delete old versions automatically
+Keep only latest version
+Remove expired delete markers
+4. Data Archival 📦
+
+Move rarely accessed data to archival storage:
+
+Compliance data
+Old records
+Audit logs
+
+Example:
+
+After 30 days → Move to Glacier
+After 1 year → Move to Deep Archive
+5. Log Management 📊
+
+Very useful for applications generating logs:
+
+Store logs in S3 Standard for 7 days
+Move to Glacier for long-term storage
+Delete after 90 days
+6. Backup Management 💾
+
+Used for automated backup retention:
+
+Keep daily backups for 7 days
+Keep weekly backups for 1 month
+Delete older backups automatically
+
+What is S3 Versioning?
+
+S3 Versioning is a feature that keeps multiple variants of an object in the same bucket.
+
+When versioning is enabled:
+
+Every update to a file creates a new version
+Deleted files are not permanently removed (they get a delete marker)
+You can restore previous versions anytime
+How S3 Versioning Works
+Example:
+
+You upload a file:
+
+report.pdf (v1)
+
+You update it:
+
+report.pdf (v2)
+
+You update again:
+
+report.pdf (v3)
+
+Now S3 keeps all versions:
+
+v1 → original file
+v2 → updated file
+v3 → latest file (current)
+
+If you delete it:
+
+S3 adds a delete marker
+Old versions still exist in the bucket
+States of Versioning
+Unversioned (default)
+Only latest file exists
+Overwrite replaces file
+Versioning Enabled
+Multiple versions stored
+Full history maintained
+Versioning Suspended
+New versions stop being created
+Existing versions remain
+How to Enable Versioning
+Using AWS Console:
+Go to S3 bucket
+Click Properties
+Find Versioning
+Click Enable
+Save changes
+Key Features
+Keeps file history
+Prevents accidental overwrite
+Supports recovery of deleted files
+Each version has a unique Version ID
+Important Concepts
+1. Version ID
+
+Every object version gets a unique ID:
+
+file.txt → versionId: A1B2C3
+file.txt → versionId: D4E5F6
+2. Delete Marker
+
+Instead of deleting data, S3 adds:
+
+DeleteMarker = true
+
+This hides the file but does not remove old versions.
+
+Uses of S3 Versioning
+1. Data Protection
+Recover accidentally deleted files
+Restore previous versions
+2. Backup & Recovery
+Acts like automatic backup system
+Useful for disaster recovery
+3. Application Safety
+Prevents overwriting critical files
+Useful for production systems
+4. Audit & Compliance
+Track changes to files over time
+Maintain historical records
+5. DevOps & CI/CD
+Keep different build versions
+Roll back deployments easily
